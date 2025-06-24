@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Blog Post</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .blog-form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .blog-form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .blog-form input,
+    .blog-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .blog-form button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .blog-form button:hover {
+      background-color: #0056b3;
+    }
+
+    .preview {
+      margin-top: 30px;
+      max-width: 700px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .preview img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    .preview h3 {
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <!-- <h2><%= JSON.stringify(user) %></h2> -->
+  <form class="blog-form" id="blogForm" action="/blog/add" method="post" enctype="multipart/form-data">
+    <h2>Add a Blog Post</h2>
+    <input type="file" id="coverImage" name="coverImg" accept="image/*"/>
+    <input type="text" id="title" name="title" placeholder="Blog Title" required />
+    <textarea id="content" rows="6" name="blogContent" placeholder="Blog Content..." required></textarea>
+    <input type="text" id="creatorName" name="name" value="<%= user.name %>" placeholder="Creator Name" required />
+    <input type="email" id="creatorEmail" name="email" value="<%= user.email %>" placeholder="Creator Email" required />
+    <input type="hidden" name="_id" value="<%= user._id %>">
+    <button type="submit">Submit Blog</button>
+  </form>
+
+  <div class="preview" id="preview" style="display: none;">
+    <h2>Preview:</h2>
+    <img id="previewImage" />
+    <h3 id="previewTitle"></h3>
+    <p id="previewContent"></p>
+    <p><strong>By:</strong> <span id="previewCreator"></span></p>
+    <button id="confirm-submit">submit</button>
+  </div>
+
+  <script>
+    const blogForm = document.getElementById('blogForm');
+    const preview = document.getElementById('preview');
+    const previewImage = document.getElementById('previewImage');
+    const previewTitle = document.getElementById('previewTitle');
+    const previewContent = document.getElementById('previewContent');
+    const previewCreator = document.getElementById('previewCreator');
+    const submit = document.getElementById('confirm-submit');
+
+
+    blogForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const coverImage = document.getElementById('coverImage').files[0];
+      const title = document.getElementById('title').value;
+      const content = document.getElementById('content').value;
+      const creatorName = document.getElementById('creatorName').value;
+      const creatorEmail = document.getElementById('creatorEmail').value;
+
+      if (coverImage) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          previewImage.src = e.target.result;
+        };
+        reader.readAsDataURL(coverImage);
+      }
+
+      previewTitle.textContent = title;
+      previewContent.textContent = content;
+      previewCreator.textContent = `${creatorName} (${creatorEmail})`;
+
+      preview.style.display = 'block';
+      //blogForm.reset();
+    });
+    submit.addEventListener('click',() => blogForm.submit());
+  </script>
+</body>
+</html>

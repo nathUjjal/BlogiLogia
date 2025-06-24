@@ -1,0 +1,78 @@
+<!-- Sidebar HTML -->
+<style>
+.sidebar {
+  width: 250px;
+  background-color: #1e1e2f;
+  color: #fff;
+  height: 100vh;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.profile-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.user-name {
+  font-size: 1.2em;
+  margin: 5px 0;
+}
+
+.user-email {
+  font-size: 0.9em;
+  color: #ccc;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #ccc;
+  padding: 12px 10px;
+  border-radius: 8px;
+  margin: 5px 0;
+  transition: background 0.3s;
+}
+
+.nav-links a:hover {
+  background-color: #353552;
+  color: #fff;
+}
+
+.logout {
+  margin-top: auto;
+  color: #ff6b6b;
+}
+
+.logout:hover {
+  background-color: #4a2a2a;
+  color: white;
+}
+
+</style>
+<div class="sidebar">
+  <div class="profile-section">
+    <img src="https://via.placeholder.com/80" alt="Profile Picture" class="profile-pic" />
+    <h3 class="user-name">John Doe</h3>
+    <p class="user-email">john.doe@example.com</p>
+  </div>
+
+  <nav class="nav-links">
+    <a href="/details">Details</a>
+    <a href="/myblogs">My Blogs</a>
+    <a href="/logout" class="logout">Logout</a>
+  </nav>
+</div>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sidebar Toggle</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      height: 100vh;
+      z-index: 999;
+    }
+    .sidebar {
+      width: 0;
+      background-color: #1a202c;
+      color: white;
+      overflow: hidden;
+      transition: width 0.3s;
+      padding: 0;
+    }
+    .sidebar.open {
+      width: 250px;
+      padding: 16px;
+    }
+    .sidebar h2 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .sidebar p {
+      margin: 4px 0;
+    }
+    .sidebar nav {
+      margin-top: 24px;
+    }
+    .sidebar a {
+      display: block;
+      margin-bottom: 12px;
+      text-decoration: none;
+      color: white;
+    }
+    .sidebar a.logout {
+      color: #f56565;
+    }
+    .main {
+      flex: 1;
+      padding: 16px;
+    }
+    .toggle-btn {
+      margin-bottom: 16px;
+      font-size: 18px;
+      padding: 8px 12px;
+      background-color: #edf2f7;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .welcome {
+      color: #4a5568;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="sidebar" class="sidebar">
+      <h2>Welcome</h2>
+      <p>John Doe</p>
+      <p style="color: #a0aec0">john@example.com</p>
+
+      <nav>
+        <a href="#">Dashboard</a>
+        <a href="#">Profile</a>
+        <a href="#">Settings</a>
+        <a href="#" class="logout">Logout</a>
+      </nav>
+    </div>
+
+    <div class="main">
+      <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+      <h1>Dashboard</h1>
+      <p class="welcome">Welcome back, John Doe.</p>
+    </div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const button = document.querySelector('.toggle-btn');
+
+      if (sidebar.classList.contains('open')) {
+        sidebar.classList.remove('open');
+        button.textContent = '☰';
+      } else {
+        sidebar.classList.add('open');
+        button.textContent = '✖';
+      }
+    }
+  </script>
+</body>
+</html>

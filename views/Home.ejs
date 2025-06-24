@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Blogify - Home</title>
+    <%- include("./partials/styleHome.ejs") %>
+    <!-- <%- include("./partials/newSideBar.ejs") %>   -->
+</head>
+<body>
+    <header>
+        <div class="logo">BlogiLogia</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Blogs</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+        <div class="auth-buttons" style="display:<%= user ? 'none' : 'block' %>;">
+            <button class="signin-btn" onclick="handleSignIn()">Sign In</button>
+            <button class="signup-btn" onclick="handleSignUp()">Sign Up</button>
+        </div>
+        <div class="profile-icon" style="display: <%= user ?'block':'none'  %>;" onclick="toggleMenu()">
+            <img src="<%= user?.profileImg ? `/uploads/${user.profileImg}` : 'default.jpg' %>" alt="default.jpg">
+        </div>
+        <!-- <h3><%= JSON.stringify(user) %> </h3> -->
+        <div class="popup-menu" id="popupMenu">
+            <a href="user/profile">Profile</a>
+            <a href="/Blog/add">Add Blogs</a>            
+            <a href="#">Settings</a>
+            <a href="/user/logout">Logout</a>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>Welcome to BlogiLogia</h1>
+            <p>Your destination for insightful blogs, thought pieces, and personal stories.</p>
+        </section>
+    </main>
+
+<script>
+
+function handleSignIn() {
+    window.location.href = '/user/signin';
+}
+function handleSignUp() {
+    window.location.href = '/user/signup';
+}
+function toggleMenu() {
+    const menu = document.getElementById("popupMenu");
+    console.log("toggle");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+// Close popup if clicked outside
+document.addEventListener("click", function(event) {
+    const menu = document.getElementById("popupMenu");
+    const icon = document.querySelector(".profile-icon");
+
+    if (!menu.contains(event.target) && !icon.contains(event.target)) {
+    menu.style.display = "none";
+    }
+});
+</script>
+</body>
+</html>

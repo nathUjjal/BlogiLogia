@@ -1,0 +1,14 @@
+<div class="profile-icon" style="display: <%= user ?'block':'none'  %>;" onclick="toggleMenu()">
+            <img src="<%= user.profile_img ? `/uploads/${user.profile_img}` : 'default.jpg' %>" alt="default.jpg">
+</div>
+and payload is payload = {
+        _id: user._id,
+        name: user.username,
+        email:user.email,
+        role:user.role,
+        profileImg:user.profile_img,
+        phone_no:user.phone_no,
+    }
+
+default.img is in public forlder
+and uploads exist within public
