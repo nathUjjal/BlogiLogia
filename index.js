@@ -5,6 +5,7 @@ import {blogsRouter} from "./router/blogsrouters.js"
 import {connectToMongo} from "./connection.js"
 import { middleware} from "./middleware/authenticate.js";
 import cookieParser from "cookie-parser";
+import { blog } from "./models/Blogs.js";
 const PORT =  process.env.PORT || 8000 ;
 const app = express();
 
@@ -19,8 +20,9 @@ app.use(cookieParser());
 app.use(express.static('public'));
 app.use('/',middleware.checkCookieToAuthenticate("AuthToken"));
 
-app.get('/',(req,res) => res.render('Home',{
+app.get('/',async (req,res) => res.render('Home',{
     user:req.user,
+    Blogs:await blog.find().sort({ createdAt: -1 }),
 }));
 app.use('/user',router);
 app.use('/blog',blogsRouter);

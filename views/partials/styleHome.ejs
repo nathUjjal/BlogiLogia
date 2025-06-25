@@ -119,28 +119,46 @@ nav a:hover {
 }
 
 main {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
+  padding: 30px;
 }
 
-.hero {
-    text-align: center;
-    padding: 60px 20px;
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+.blog-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
 }
 
-.hero h1 {
-    font-size: 48px;
-    color: #2c3e50;
+.blog-card {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
 }
 
-.hero p {
-    margin-top: 16px;
-    font-size: 18px;
-    color: #7f8c8d;
+.blog-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
 }
 
+.blog-content {
+  padding: 15px;
+}
+
+.blog-content h3 {
+  margin: 0 0 10px;
+  color: #333;
+}
+
+.blog-content p {
+  margin: 0 0 10px;
+  color: #555;
+}
+
+.blog-meta {
+  font-size: 0.85rem;
+  color: #777;
+}
 </style>

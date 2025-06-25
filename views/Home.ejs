@@ -9,7 +9,7 @@
     <header>
         <div class="logo">BlogiLogia</div>
         <nav>
-            <a href="#">Home</a>
+            <a href="/">Home</a>
             <a href="#">Blogs</a>
             <a href="#">About</a>
             <a href="#">Contact</a>
@@ -30,11 +30,10 @@
         </div>
     </header>
     <main>
-        <section class="hero">
-            <h1>Welcome to BlogiLogia</h1>
-            <p>Your destination for insightful blogs, thought pieces, and personal stories.</p>
-        </section>
-    </main>
+    <div class="blog-container" id="blogContainer">
+      <!-- Blog cards will be inserted here by JS -->
+    </div>
+  </main>
 
 <script>
 
@@ -57,6 +56,23 @@ document.addEventListener("click", function(event) {
     if (!menu.contains(event.target) && !icon.contains(event.target)) {
     menu.style.display = "none";
     }
+});
+const blogs = <%- JSON.stringify(Blogs) %>;
+//console.log(blogs);
+const blogContainer = document.getElementById("blogContainer");
+
+blogs.forEach(blog => {
+  const card = document.createElement("div");
+  card.className = "blog-card";
+  card.innerHTML = `
+    <img src="/blogs/${blog.coverImg}" alt="Blog Image">
+    <div class="blog-content">
+      <h3>${blog.title}</h3>
+      <p>${blog.body}</p>
+      <div class="blog-meta">By ${blog.name} (${blog.email})</div>
+    </div>
+  `;
+  blogContainer.appendChild(card);
 });
 </script>
 </body>
