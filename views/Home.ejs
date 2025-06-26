@@ -34,7 +34,6 @@
       <!-- Blog cards will be inserted here by JS -->
     </div>
   </main>
-
 <script>
 
 function handleSignIn() {
@@ -63,17 +62,26 @@ const blogContainer = document.getElementById("blogContainer");
 
 blogs.forEach(blog => {
   const card = document.createElement("div");
-  card.className = "blog-card";
+  card.classList.add("blog-card");
+  card.setAttribute("blog-id", blog._id);
   card.innerHTML = `
     <img src="/blogs/${blog.coverImg}" alt="Blog Image">
+        
     <div class="blog-content">
       <h3>${blog.title}</h3>
-      <p>${blog.body}</p>
       <div class="blog-meta">By ${blog.name} (${blog.email})</div>
     </div>
   `;
   blogContainer.appendChild(card);
 });
+const blogCard = document.querySelectorAll(".blog-card");
+blogCard.forEach(card =>{
+    card.addEventListener("click",function(e){
+    const blogId = e.currentTarget.getAttribute("blog-id");
+    window.location.href = `/blog/${e.currentTarget.getAttribute("blog-id")}`;
+    })
+});
+
 </script>
 </body>
 </html>

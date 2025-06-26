@@ -23,4 +23,6 @@ blogsRouter.get('/add',(req,res)=> {
     user:req.user,
 })
 });
+blogsRouter.get('/:id',blogController.blogDetails);
+
 blogsRouter.post('/add',upload.single("coverImg"),blogController.addBlog);

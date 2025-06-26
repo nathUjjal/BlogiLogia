@@ -11,6 +11,16 @@ async function addBlog(req,res) {
     })
     res.redirect('/');
 }
+async function blogDetails(req,res) {
+    //const blogId = req.params.id;
+    const fullBlog = await blog.findById(req.params.id);
+    //console.log(fullBlog);
+    res.render("blogDetails",{
+        blog:fullBlog
+    })
+}
+
 export const blogController = {
     addBlog,
+    blogDetails,
 };
