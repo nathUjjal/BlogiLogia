@@ -23,15 +23,17 @@ async function handlUserSignin(req,res) {
     }
 }
 async function setProfileDetails(req,res) {
-    // const{ phoneNo,profileImg,email} = req.body;
     const updatedUser = await users.findOneAndUpdate (
         { _id : req.body._id},
         { profile_img : req.file.filename ,
             phone_no : req.body.phoneNo,
         });
-    console.log(updatedUser);
-    const token = authentication.createJWTToken(updatedUser);
-    res.cookie('AuthToken',token).redirect("/");
+    const newtoken = authentication.createJWTToken({
+        ...updatedUser,
+        profile_img : req.file.filename ,
+        phone_no : req.body.phoneNo
+    });
+    res.cookie('AuthToken',newtoken).redirect("/");
 }
 
 export const controllers = {
