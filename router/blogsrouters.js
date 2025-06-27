@@ -24,5 +24,6 @@ blogsRouter.get('/add',(req,res)=> {
 })
 });
 blogsRouter.get('/:id',blogController.blogDetails);
+blogsRouter.get('/delete/:id',blogController.deleteBlogDetails);
 
 blogsRouter.post('/add',upload.single("coverImg"),blogController.addBlog);

@@ -6,6 +6,7 @@ function checkCookieToAuthenticate(cookie){
         try{
             const userPayload = authentication.verifyToken(userCookie);
             req.user=userPayload;
+            //console.log(userPayload);
         }catch(err){}     
         next();
     }    

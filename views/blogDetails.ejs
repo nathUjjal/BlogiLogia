@@ -72,6 +72,9 @@
     <div class="blog-content"><pre>
       <%= blog.body %></pre>
     </div>
+    <% if ( locals.user?.role == "ADMIN") { %>
+        <a href="/blog/delete/<%= blog._id %>">Delete</a>
+    <% } %>
   </div>
 
   <script>

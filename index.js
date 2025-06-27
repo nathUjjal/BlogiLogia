@@ -24,6 +24,9 @@ app.get('/',async (req,res) => res.render('Home',{
     user:req.user,
     Blogs:await blog.find().sort({ createdAt: -1 }),
 }));
+app.get('/admin',(req,res) =>{
+    res.render("signin",{ role : "ADMIN"});
+});
 app.use('/user',router);
 app.use('/blog',blogsRouter);
 

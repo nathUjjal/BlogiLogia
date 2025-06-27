@@ -42,7 +42,7 @@ userSchema.pre('save',function(next){
     next();
 });
 
-userSchema.static('matchPassword',async function(email,password){
+userSchema.static('matchPassword',async function(email,password,role){
     const user =await this.findOne({ email });
     //console.log("user from mongo ",user);
     if (!user) throw new Error("email not Found");
@@ -51,6 +51,7 @@ userSchema.static('matchPassword',async function(email,password){
                 .update(password)
                 .digest('hex');
     if ( user.password !==  currentPassword) throw new Error("Incorrect Password") ;
+    if ( role == "ADMIN" && user.role !==  role) throw new Error("Incorrect Password") ;
     const token = authentication.createJWTToken(user);
     return  token;
 });

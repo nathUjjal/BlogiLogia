@@ -19,7 +19,7 @@
 
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required />
-
+            <input type="hidden" name="role" value="<%= locals.role ? 'ADMIN' : 'USER' %>">
             <button type="submit">Sign In</button>
         </form>
         <div class="signup-link">

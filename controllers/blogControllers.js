@@ -13,14 +13,23 @@ async function addBlog(req,res) {
 }
 async function blogDetails(req,res) {
     //const blogId = req.params.id;
+    //console.log("in controlers",req.user);
     const fullBlog = await blog.findById(req.params.id);
     //console.log(fullBlog);
     res.render("blogDetails",{
-        blog:fullBlog
+        blog:fullBlog,
+        user:req.user,
     })
+}
+async function deleteBlogDetails(req,res) {
+    await blog.deleteOne({ _id : req.params.id})
+    .then(()=>console.log("successfully Deleted"))
+    .catch((error)=>console.log(error));
+    res.redirect("/");
 }
 
 export const blogController = {
     addBlog,
     blogDetails,
+    deleteBlogDetails,
 };

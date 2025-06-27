@@ -13,9 +13,9 @@ async function handlUserSignup(req,res) {
     res.cookie('AuthToken',token).redirect("/");
 }
 async function handlUserSignin(req,res) {   
-    const { email, password } = req.body;
+    const { email, password , role } = req.body;
     try{
-        const token = await users.matchPassword(email,password);
+        const token = await users.matchPassword(email,password,role);
         res.cookie('AuthToken',token).redirect("/");
     }   
     catch(err){
