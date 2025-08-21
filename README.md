@@ -26,37 +26,6 @@ It allows users to create, read, update, and delete blog posts in an intuitive a
 
 ---
 
-## ⚙️ Installation & Setup
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/blogilogia.git
-   cd blogilogia
-
-
-Install dependencies:
-
-npm install
-
-
-Setup MongoDB:
-
-Install and run MongoDB locally or
-
-Use a cloud MongoDB instance (e.g., MongoDB Atlas
-)
-
-Update your MongoDB connection string in app.js:
-
-mongoose.connect("mongodb://localhost:27017/blogilogiaDB");
-
-
-Run the app:
-
-npm start
-
-
-The app will run on http://localhost:3000
-
 📸 Screenshots (Optional)
 
 Add screenshots here once you have them
@@ -76,5 +45,3 @@ Add screenshots here once you have them
 Ujjal Nath
 📧 ujjalnath008@gmail.com
 
-🔗 LinkedIn
- | GitHub
